@@ -7,7 +7,7 @@
       <% repo.pulls.each do |pull| -%>
         <li><%= pull.title %>
           <%= pull.user_login %>
-          <%= image_tag pull.user_avatar_url, alt: "#{pull.user_login} avatar", style: 'width: 50px' %></li>
+          <%# image_tag pull.user_avatar_url, alt: "#{pull.user_login} avatar", style: 'width: 50px' %></li>
       <% end -%>
     </ol>
   </li>
