@@ -6,7 +6,6 @@ gem 'sqlite3'
 gem 'faraday'
 gem 'faraday_middleware'
 gem 'hashie'
-gem 'stache'
 
 group :test, :development do
   gem "rspec-rails", "~> 2.0"

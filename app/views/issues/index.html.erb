@@ -1,0 +1,15 @@
+<h1>Pull Requests for <%= "{Username}" %></h1>
+<ul>  
+  <% @repos.each do |repo| -%>
+  <li>
+    <%= link_to repo.full_name, repo.url %>, <span><%= repo.language %></span> <br>
+    <ol>
+      <% repo.pulls.each do |pull| -%>
+        <li><%= pull.title %>
+          <%= pull.user_login %>
+          <%= image_tag pull.user_avatar_url, alt: "#{pull.user_login} avatar", style: 'width: 50px' %></li>
+      <% end -%>
+    </ol>
+  </li>
+  <% end -%>
+</ul>

@@ -1,5 +1,5 @@
 Gtpr::Application.routes.draw do
-  root to: "pull_requests#index"
+  root to: "issues#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

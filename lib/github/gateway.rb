@@ -1,13 +1,17 @@
 module Github
   class Gateway
+    attr_accessor :http_client
+
     def initialize
       @http_client = Faraday.new(options) do |builder|
         builder.use Faraday::Request::Multipart
         builder.use Faraday::Request::UrlEncoded
         builder.use FaradayMiddleware::Mashify
         builder.use FaradayMiddleware::ParseJson
-        # TODO: figure out why caching doesn't work
-        # builder.use FaradayMiddleware::Caching, Rails.cache
+
+        # If you are experiencing odd issues with the middleware, or everything
+        # returns a response full of nil values, try deleting the cache.
+        builder.use FaradayMiddleware::Caching, Rails.cache
         builder.adapter Faraday.default_adapter
       end
     end
@@ -46,7 +50,7 @@ module Github
     end
 
     class PullRequest
-      attr_reader :issue_url, :title, :user_avatar_url, :login
+      attr_reader :issue_url, :title, :user_avatar_url, :user_login
       def initialize(attrs)
         @issue_url = attrs[:issue_url]
         @title = attrs[:title]

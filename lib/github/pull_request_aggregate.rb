@@ -1,4 +1,3 @@
-
 module Github
 class PullRequestAggregate
   def initialize(pr_finder=nil)
