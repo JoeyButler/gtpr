@@ -1,5 +1,5 @@
 <h1>Pull Requests for <%= "{Username}" %></h1>
-<ul>  
+<ul>
   <% @repos.each do |repo| -%>
   <li>
     <%= link_to repo.full_name, repo.url %>, <span><%= repo.language %></span> <br>
