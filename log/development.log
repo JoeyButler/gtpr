@@ -4930,3 +4930,8 @@ ActiveRecord::ConnectionNotEstablished (ActiveRecord::ConnectionNotEstablished):
   Rendered /Users/joeybutler/.rvm/gems/ruby-1.9.3-p125@gtpr/gems/actionpack-3.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.6ms)
   Rendered /Users/joeybutler/.rvm/gems/ruby-1.9.3-p125@gtpr/gems/actionpack-3.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (2.1ms)
   Rendered /Users/joeybutler/.rvm/gems/ruby-1.9.3-p125@gtpr/gems/actionpack-3.2.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (11.3ms)
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
