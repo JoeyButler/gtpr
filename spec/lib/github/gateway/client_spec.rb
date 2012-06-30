@@ -23,4 +23,13 @@ describe Github::Gateway::Client do
       org.login.should eql('livingsocial')
     end
   end
+
+  it "should return a list of repos by orgs that the user belongs to" do
+    VCR.use_cassette('github_orgs') do
+      repos = subject.find_repos_for_user_across_organizations('joeybutler')
+      repo = repos.first
+      repo.should be_kind_of Github::Gateway::Client::Repo
+      repos.any?(&:private).should be_true
+    end
+  end
 end

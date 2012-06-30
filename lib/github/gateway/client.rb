@@ -25,18 +25,30 @@ module Github
         end
       end
 
-      def find_organizations_for_user(username)
-        result = @http_client.get "/users/#{username}/orgs"
-        result.body.map do |orgs|
-          Organization.new(orgs)
-        end
-      end
-
       # @param string full_repo_name Format as :user/:repo. E.g. mattmueller/foursquare2
       def find_pulls_for_repo(full_repo_name)
         result = @http_client.get "/repos/#{full_repo_name}/pulls"
         result.body.map do |pulls|
           PullRequest.new(pulls)
+        end
+      end
+
+      def find_repos_for_user_across_organizations(username)
+        orgs = find_organizations_for_user(username)
+        repos = []
+        orgs.map do |org|
+          result = @http_client.get "/orgs/#{org.login}/repos"
+          repos << result.body.map do |repo_attrs|
+            Repo.new(repo_attrs)
+          end
+        end
+        repos.flatten
+      end
+
+      def find_organizations_for_user(username)
+        result = @http_client.get "/users/#{username}/orgs"
+        result.body.map do |orgs|
+          Organization.new(orgs)
         end
       end
 
@@ -47,7 +59,7 @@ module Github
       end
 
       class Repo
-        attr_reader :url, :full_name, :language
+        attr_reader :url, :full_name, :language, :private
         attr_accessor :pulls
         def initialize(attrs)
           # E.g. https://api.github.com/repos/mattmueller/koala
@@ -55,6 +67,7 @@ module Github
           # E.g. mattmueller/koala
           @full_name = attrs[:full_name]
           @language = attrs[:language]
+          @private = attrs[:private]
         end
       end
 
