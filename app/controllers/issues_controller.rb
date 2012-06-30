@@ -4,7 +4,6 @@ class IssuesController < ApplicationController
 
   def index
     aggregate = Github::IssueAggregate.new(@gh_client)
-    debugger
     @repos = aggregate.for_user(current_user.name)
   end
 
