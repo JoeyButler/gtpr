@@ -6,6 +6,10 @@ gem 'pg'
 gem 'faraday'
 gem 'faraday_middleware'
 gem 'hashie'
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-github'
+gem 'simple_oauth' # For faraday middleware
 
 group :test, :development do
   gem "rspec-rails", "~> 2.0"
@@ -27,3 +31,6 @@ end
 
 gem 'jquery-rails'
 
+group :development do
+  gem 'vcr'
+end
