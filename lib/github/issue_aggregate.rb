@@ -7,6 +7,7 @@ module Github
     # @return [Repo] Returns repos, each with a reference to the pull requests.
     def for_user(username)
       repos = @github_client.find_repos_for_user(username)
+      repos += @github_client.find_repos_for_user_across_organizations(username)
       repos.map do |repo|
         repo.pulls = @github_client.find_pulls_for_repo(repo.full_name)
         repo
