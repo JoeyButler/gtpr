@@ -59,7 +59,8 @@ module Github
       end
 
       class Repo
-        attr_reader :clone_url, :full_name, :language, :private, :open_issues
+        attr_reader :clone_url, :full_name, :language, :private, :open_issues,
+          :description
         attr_accessor :pulls
         def initialize(attrs)
           # E.g. https://github.com/livingsocial/rake-pipeline.git
@@ -68,6 +69,7 @@ module Github
           @full_name = attrs[:full_name]
           @language = attrs[:language]
           @private = attrs[:private]
+          @description = attrs[:description]
           @open_issues = attrs[:open_issues]
         end
       end

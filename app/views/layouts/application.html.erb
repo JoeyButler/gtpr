@@ -8,6 +8,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+  <style type="text/css">
+    .span6 {
+      margin: 0 auto;
+      float: none;
+      width: 350px;
+    }
+  </style>
+
   <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
       <div class="container">
@@ -29,8 +37,12 @@
   <div class="container">
     <div class="row">
       <div class="span6">
-        <p class="notice"><%= notice %></p>
-        <p class="alert"><%= alert %></p>
+        <% if notice.present? %>
+          <p class="notice"><%= notice %></p>
+        <% end %>
+        <% if alert.present? %>
+          <p class="alert"><%= alert %></p>
+        <% end %>
         <%= yield %>
       </div>
     </div>
