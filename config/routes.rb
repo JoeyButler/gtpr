@@ -1,6 +1,9 @@
 Gtpr::Application.routes.draw do
-  root to: "issues#index"
+  root to: "repos#index"
 
+  resources :repos, only: [:index] do
+    resources :issues, only: [:show]
+  end
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
 
   # The priority is based upon order of creation:

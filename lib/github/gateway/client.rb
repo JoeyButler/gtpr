@@ -13,7 +13,7 @@ module Github
 
           # If you are experiencing odd issues with the middleware, or everything
           # returns a response full of nil values, try deleting the cache.
-          # builder.use FaradayMiddleware::Caching, cache
+          builder.use FaradayMiddleware::Caching, cache
           builder.adapter Faraday.default_adapter
         end
       end
@@ -59,15 +59,16 @@ module Github
       end
 
       class Repo
-        attr_reader :url, :full_name, :language, :private
+        attr_reader :clone_url, :full_name, :language, :private, :open_issues
         attr_accessor :pulls
         def initialize(attrs)
-          # E.g. https://api.github.com/repos/mattmueller/koala
-          @url = attrs[:url]
+          # E.g. https://github.com/livingsocial/rake-pipeline.git
+          @clone_url = attrs[:clone_url]
           # E.g. mattmueller/koala
           @full_name = attrs[:full_name]
           @language = attrs[:language]
           @private = attrs[:private]
+          @open_issues = attrs[:open_issues]
         end
       end
 

@@ -1,13 +1,7 @@
 class IssuesController < ApplicationController
-  before_filter :authenticate_user!
-  before_filter :instantiate_github_client
-
-  def index
-    aggregate = Github::IssueAggregate.new(@gh_client)
-    @repos = aggregate.for_user(current_user.name)
-  end
-
-  def instantiate_github_client
-    @gh_client = Github::Gateway::Client.new(current_user.token)
+  # get /repos/:repo/issues
+  def show
+    @issues = @gh_client.find_pulls_for_repo(params[:id])
+    render json: @issues
   end
 end
