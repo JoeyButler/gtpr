@@ -4,7 +4,7 @@ require 'github/gateway/client'
 require 'github/issue_aggregate'
 
 describe Github::IssueAggregate do
-  describe "#all_pulls_across_all_repos_for_user" do
+  describe "#for_user" do
     before do
       @username = 'joeyb'
       @full_name = 'joeyb/my_repo'
