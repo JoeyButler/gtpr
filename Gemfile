@@ -14,6 +14,7 @@ gem 'simple_oauth' # For faraday middleware
 group :test, :development do
   gem "rspec-rails", "~> 2.0"
   gem 'debugger'
+  gem 'vcr'
 end
 
 # Gems used only for assets and not required
@@ -27,10 +28,8 @@ group :assets do
 
   gem "twitter-bootstrap-rails"
   gem 'uglifier', '>= 1.0.3'
+  gem 'handlebars_assets'
 end
 
 gem 'jquery-rails'
 
-group :development do
-  gem 'vcr'
-end

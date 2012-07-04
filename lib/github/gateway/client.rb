@@ -33,6 +33,14 @@ module Github
         end
       end
 
+      def find_issues_for_repo(full_repo_name)
+        # GET /repos/:user/:repo/issues
+        result = @http_client.get "/repos/#{full_repo_name}/issues"
+        result.body.map do |pulls|
+          Issue.new(pulls)
+        end
+      end
+
       def find_repos_for_user_across_organizations(username)
         orgs = find_organizations_for_user(username)
         repos = []
@@ -59,12 +67,12 @@ module Github
       end
 
       class Repo
-        attr_reader :clone_url, :full_name, :language, :private, :open_issues,
+        attr_reader :html_url, :full_name, :language, :private, :open_issues,
           :description
         attr_accessor :pulls
         def initialize(attrs)
           # E.g. https://github.com/livingsocial/rake-pipeline.git
-          @clone_url = attrs[:clone_url]
+          @html_url = attrs[:html_url]
           # E.g. mattmueller/koala
           @full_name = attrs[:full_name]
           @language = attrs[:language]
@@ -90,6 +98,19 @@ module Github
         attr_reader :login
         def initialize(attrs)
           @login = attrs[:login]
+        end
+      end
+
+      class Issue
+        attr_reader :title, :user_login, :user_avatar_url, :labels, :pull_request_url
+        def initialize(attrs)
+          @title = attrs[:title]
+          @labels = attrs[:labels].map {|l| l.name}.join(", ")
+          @pull_request_url = attrs[:pull_request][:html_url]
+          if attrs[:user]
+            @user_avatar_url = attrs[:user][:avatar_url]
+            @user_login = attrs[:user][:login]
+          end
         end
       end
     end

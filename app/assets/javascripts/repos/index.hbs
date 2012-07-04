@@ -1,0 +1,8 @@
+<ul class="unstyled">
+  {{#issues}}
+  <li>
+    <em>{{title}}</em> {{#if pull_request_url}}<a href="{{pull_request_url}}" target="_blank" class="icon-share"></a>{{/if}}
+  </li>
+  {{/issues}}
+</ul>
+

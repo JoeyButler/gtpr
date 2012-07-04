@@ -60,6 +60,10 @@ GEM
       multipart-post (~> 1.1)
     faraday_middleware (0.8.7)
       faraday (>= 0.7.4, < 0.9)
+    handlebars_assets (0.4.4)
+      execjs (>= 1.2.9)
+      sprockets (>= 2.0.3)
+      tilt
     hashie (1.2.0)
     hike (1.2.1)
     httpauth (0.1)
@@ -175,6 +179,7 @@ DEPENDENCIES
   devise
   faraday
   faraday_middleware
+  handlebars_assets
   hashie
   jquery-rails
   omniauth

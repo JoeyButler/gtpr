@@ -1,0 +1,26 @@
+// Place all the styles related to the repos controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+h1 { margin-bottom: 20px; }
+ul#repos li {
+  margin-bottom: 15px;
+  position: relative;
+  border-bottom: 1px solid #B7B7B7;
+  padding-bottom: 7px;
+
+  h3 {
+    line-height: 29px;
+    padding-right: 7px;
+  }
+  .language {
+    font-style: italic;
+  }
+  p {
+    width: 300px;
+  }
+  .btn {
+    position: absolute;
+    left: -110px;
+    top: 5px;
+  }
+}
