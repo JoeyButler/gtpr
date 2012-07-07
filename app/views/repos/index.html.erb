@@ -3,15 +3,17 @@
   <% @repos.each do |repo| -%>
   <li>
     <h3 style="display:inline"><%= repo.full_name %></h3>
-    <%= link_to "", "#{repo.html_url}/issues", class: 'icon-share', target: '_blank' %>
+    <%= link_to "", repo.html_url, class: 'icon-share', target: '_blank' %>
     <span class="language"><%= repo.language %></span>
     <br>
     <p><%= repo.description %></p>
-    <% if repo.open_issues > 0 %>
-      <%= link_to "view #{pluralize repo.open_issues, 'issue'}", repo_issues_path(repo.full_name.gsub('/', '%2F')), target: '_blank', class: 'btn btn-mini btn-primary issues-btn' %>
-    <% else %>
-      <%= link_to "zero issues", repo.html_url, target: '_blank', class: 'btn btn-mini' %>
-    <% end %>
+    <p>
+      <% if repo.open_issues > 0 %>
+        <%= link_to "view #{pluralize repo.open_issues, 'issue'}", repo_issues_path(repo.full_name.gsub('/', '%2F')), target: '_blank', class: 'issues-btn' %>
+      <% else %>
+        <em>no issues</em>
+      <% end %>
+    </p>
   </li>
   <% end -%>
 </ul>
