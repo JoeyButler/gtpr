@@ -1,17 +1,8 @@
-<h2>Sign in</h2>
+<div id="welcome">
+  <h2>Welcome to GTPR</h2>
+  <p>This tool enables you to view all your Github Issues at a glance. Rather than viewing issues for a specific repository one at a time, you can get a quick overview.</p>
+  <%# TODO make sure you figure out auth for ppl who don't have their email%>
+  <%# address on GH%>
 
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
-
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
-
-  <% if devise_mapping.rememberable? -%>
-    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
-  <% end -%>
-
-  <div><%= f.submit "Sign in" %></div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+  <%= render "devise/shared/links" %>
+</div>
