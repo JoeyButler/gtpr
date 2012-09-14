@@ -9,7 +9,7 @@
     <p><%= repo.description %></p>
     <p>
       <% if repo.open_issues > 0 %>
-        <%= link_to "view #{pluralize repo.open_issues, 'issue'}", repo_issues_path(repo.full_name.gsub('/', '%2F')), target: '_blank', class: 'issues-btn' %>
+        <%= link_to "view #{pluralize repo.open_issues, 'issue'}", repo_issues_path(repo.full_name.gsub('/', '%2F')), class: 'issues-btn' %>
       <% else %>
         <em>no issues</em>
       <% end %>

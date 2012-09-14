@@ -3,7 +3,12 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 $ ->
   $('a.issues-btn').click (event)->
+    if (/populated/).test(event.target.className)
+      return false
     link = $(event.target)
     $.get link.attr('href'), (data)->
+      console.log(data)
       link.parent().append HandlebarsTemplates['repos/index'](data)
-    return false
+      link.addClass('populated')
+      link.href = null
+    event.preventDefault()
