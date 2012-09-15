@@ -7,7 +7,6 @@ $ ->
       return false
     link = $(event.target)
     $.get link.attr('href'), (data)->
-      console.log(data)
       link.parent().append HandlebarsTemplates['repos/index'](data)
       link.addClass('populated')
       link.href = null
