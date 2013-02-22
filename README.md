@@ -16,7 +16,7 @@ bundle install
 rake db:create db:migrate # Depends on postgres
 ```
 
-In order to authenticate through Github we'll need to [register our application](https://github.com/settings/applications/new). 
+In order to authenticate through Github we'll need to [register our application](https://github.com/settings/applications/new). Set the app name to whatever you'd like, then set the url to `http://gtpr.dev:3000/`, and finally the redirect url to `http://gtpr.dev:3000/users/auth/github/callback`. Once completed you should receive a Client ID and a Client Secret, we'll use these shortly.
 
 You'll want to add `127.0.0.1	gtpr.dev` as a record in your `/etc/hosts` file for the redirect to work properly. Please post an issue if you have any problems.
 
@@ -26,7 +26,7 @@ With the app id and app secret in hand we can start the server.
 export GTPR_ID=the_app_id_from_github
 export GTPR_SECRET=the_app_secret_from_github
 script/rails server
-open http://localhost:3000
+open http://gtpr.dev:3000/
 ```
 
 This should be easy to install on Heroku. 
