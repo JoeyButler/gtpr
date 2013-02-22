@@ -1,4 +1,9 @@
-<h1>Issues for <%= current_user.name %></h1>
+<h1>
+  Issues for
+  <%= form_tag repos_url, :method => :get, :id => :choose_user do %>
+    <%= text_field_tag :username, params.fetch(:username, current_user.name) %>
+  <% end %>
+</h1>
 <ul id="repos" class="unstyled">
   <% @repos.each do |repo| -%>
   <li>
