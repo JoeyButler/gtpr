@@ -46,3 +46,5 @@ Note that this is a prototype, so do it at your own risk. (See the software lice
 - Add filters around labels.
 - Add sorting.
 
+##License
+Your typical MIT license. See `LICENSE`.
