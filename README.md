@@ -1,5 +1,5 @@
 #GTPR
-An easier way of managing Github Pull Requests across multiple repos.
+The easy way to manage Github Pull Requests across multiple repos.
 
 GTPR is a YASPTOSWLTC (yet another side project turned open-source with
 litte test coverage). Basically, this is a really bare bones app that I
