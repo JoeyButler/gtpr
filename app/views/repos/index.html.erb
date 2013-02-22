@@ -4,6 +4,11 @@
     <%= text_field_tag :username, params.fetch(:username, current_user.name) %>
   <% end %>
 </h1>
+
+<% if flash[:error].present? %>
+  <p id="text-error"><%= flash[:error] %></p>
+<% end %>
+
 <ul id="repos" class="unstyled">
   <% @repos.each do |repo| -%>
   <li>

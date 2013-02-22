@@ -7,5 +7,8 @@ class ReposController < ApplicationController
     # @repos.reject! {|r| r.open_issues.zero? }
     @repos.reject! {|r| r.private }
     @repos.sort! {|a,b| b.open_issues <=> a.open_issues }
+  rescue Github::Gateway::Client::NotFoundError
+    flash[:error] = "Cannot find user [#{params[:username]}]."
+    @repos = []
   end
 end

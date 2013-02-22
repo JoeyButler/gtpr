@@ -2,6 +2,7 @@ module Github
   class Gateway
     class Client
       attr_accessor :http_client
+      NotFoundError = Class.new(StandardError)
 
       def initialize(oauth_token, cache=Rails.cache)
         @http_client = Faraday.new(options) do |builder|
@@ -19,7 +20,7 @@ module Github
       end
 
       def find_repos_for_user(username)
-        result = @http_client.get "/users/#{username}/repos"
+        result = get "/users/#{username}/repos"
         result.body.map do |repo_attrs|
           Repo.new(repo_attrs)
         end
@@ -27,7 +28,7 @@ module Github
 
       # @param string full_repo_name Format as :user/:repo. E.g. mattmueller/foursquare2
       def find_pulls_for_repo(full_repo_name)
-        result = @http_client.get "/repos/#{full_repo_name}/pulls"
+        result = get "/repos/#{full_repo_name}/pulls"
         result.body.map do |pulls|
           PullRequest.new(pulls)
         end
@@ -35,7 +36,7 @@ module Github
 
       def find_issues_for_repo(full_repo_name)
         # GET /repos/:user/:repo/issues
-        result = @http_client.get "/repos/#{full_repo_name}/issues"
+        result = get "/repos/#{full_repo_name}/issues"
         result.body.map do |pulls|
           Issue.new(pulls)
         end
@@ -45,7 +46,7 @@ module Github
         orgs = find_organizations_for_user(username)
         repos = []
         orgs.map do |org|
-          result = @http_client.get "/orgs/#{org.login}/repos"
+          result = get "/orgs/#{org.login}/repos"
           repos << result.body.map do |repo_attrs|
             Repo.new(repo_attrs)
           end
@@ -54,7 +55,7 @@ module Github
       end
 
       def find_organizations_for_user(username)
-        result = @http_client.get "/users/#{username}/orgs"
+        result = get "/users/#{username}/orgs"
         result.body.map do |orgs|
           Organization.new(orgs)
         end
@@ -64,6 +65,12 @@ module Github
 
       def options
         {:url => 'https://api.github.com/'}
+      end
+
+      def get(url)
+        result = @http_client.get(url)
+        raise NotFoundError.new if result.status == 404
+        result
       end
 
       class Repo
